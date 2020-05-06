@@ -30,17 +30,6 @@ public class SocketController {
     @Autowired
     private SimpMessageSendingOperations sendingOperations;
 
-    @MessageMapping("/rtc-message/room/{roomId}")
-    public void sendToRoom(@DestinationVariable String roomId, @Payload String message, Principal user) {
-        userRegistry.findSubscriptions(s -> s.getDestination().equals("/app/topic/room/" + roomId))
-                .stream()
-                .map(s -> s.getSession().getUser().getName())
-                .forEach(u -> {
-                    if (!u.equals(user.getName()))
-                        sendingOperations.convertAndSend(String.format("/topic/room/%s/%s", roomId, u), message);
-                });
-    }
-
     @MessageMapping("/signaling/{roomId}/{userId}")
     @SendTo("/topic/room/{roomId}/{userId}")
     public String wireUserSignaling(@DestinationVariable String roomId, @DestinationVariable String userId, @Payload String message) {
