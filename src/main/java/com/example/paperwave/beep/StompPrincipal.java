@@ -9,4 +9,5 @@ import java.security.Principal;
 @AllArgsConstructor
 class StompPrincipal implements Principal {
     private String name;
+    private String publicName;
 }

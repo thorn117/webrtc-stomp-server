@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
+import org.springframework.messaging.simp.user.SimpUserRegistry;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.messaging.SessionConnectedEvent;
 import org.springframework.web.socket.messaging.SessionSubscribeEvent;
@@ -16,11 +17,13 @@ import java.util.Objects;
 @Component
 public class WebSocketEventListener {
 
-
     private static final Logger LOGGER = LoggerFactory.getLogger(WebSocketEventListener.class);
 
     @Autowired
     private SimpMessageSendingOperations sendingOperations;
+
+    @Autowired
+    SimpUserRegistry userRegistry;
 
     @EventListener
     public void handleWebSocketConnectListener(final SessionConnectedEvent event) {
@@ -32,7 +35,5 @@ public class WebSocketEventListener {
     public void handleSubscription(final SessionSubscribeEvent event) {
         String destination = Objects.requireNonNull(event.getMessage().getHeaders().get("simpDestination")).toString();
         LOGGER.info("New subscription to {}", destination);
-
-       //  sendingOperations.convertAndSend(destination, "New user has joined");
     }
 }

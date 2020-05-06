@@ -12,7 +12,7 @@ public class CustomHandshakeHandler extends DefaultHandshakeHandler {
 
     @Override
     protected Principal determineUser(ServerHttpRequest request, WebSocketHandler wsHandler, Map<String, Object> attributes) {
-        return new StompPrincipal(UUID.randomUUID().toString());
+        return new StompPrincipal(UUID.randomUUID().toString(), "tim");
     }
 
 }
