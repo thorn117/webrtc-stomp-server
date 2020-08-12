@@ -3,10 +3,7 @@ package com.example.paperwave.beep;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
-import org.springframework.messaging.simp.SimpMessageSendingOperations;
-import org.springframework.messaging.simp.user.SimpUserRegistry;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.messaging.SessionConnectedEvent;
 import org.springframework.web.socket.messaging.SessionSubscribeEvent;
@@ -18,12 +15,6 @@ import java.util.Objects;
 public class WebSocketEventListener {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WebSocketEventListener.class);
-
-    @Autowired
-    private SimpMessageSendingOperations sendingOperations;
-
-    @Autowired
-    SimpUserRegistry userRegistry;
 
     @EventListener
     public void handleWebSocketConnectListener(final SessionConnectedEvent event) {
