@@ -8,4 +8,4 @@ A client in vanilla js is available here: [webrtc-stomp-client-js](https://githu
 
 ## Run
 
-Modify the `server.address` and `server.port` in the `application.properties` to your needs. An self-signed-cert is included. Do not forget to allow access from the browser by opening the server address (e.g. https://192.168.0.80:9110).
+Modify the `server.address` and `server.port` in the `application.properties` to your needs. A self-signed-cert is included. Do not forget to allow access from the browser by opening the server address (e.g. https://192.168.0.80:9110).
